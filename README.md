@@ -38,6 +38,7 @@
 
 2. **Prepare Command Playbook**
    - Edit `commands.txt` to add your frequently used commands (one per line)
+   - An example format is provided in commands.txt, edit it to your liking.
 
 ---
 
@@ -66,14 +67,8 @@
 
 ---
 
-## Command Playbook Format
+## Recommended USage
 
-| File         | Description                       |
-|--------------|---------------------------------|
-| `commands.txt` | Plain text file with one command per line |
-
-- Shared across all tabs
-- Editable via UI or manually by editing the file
 
 ---
 
