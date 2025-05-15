@@ -41,6 +41,9 @@
 2. **Prepare Command Playbook**
    - Edit `commands.txt` to add your frequently used commands (one per line)
    - An example format is provided in commands.txt, edit it to your liking.
+
+     ![image](https://github.com/user-attachments/assets/20966310-44fc-4d39-960d-4e2405f67c99)
+
    - The commands.txt file should be in the same directory as the script otherwise it won't load your commands.
 
 ---
