@@ -83,7 +83,7 @@
 
 ## Recommended Usage
 
-- Edit the commands you'd like to save directly in commands.txt so you can organize everything properly instead of using the save command funciton directly.
+- Edit the commands you'd like to save directly in commands.txt so you can organize everything properly instead of using the save command function directly.
 - Share your playbooks with people to get different ideas.
 - Make playbooks for beginners so they know what commands to use and why.
 
