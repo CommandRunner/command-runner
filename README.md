@@ -45,6 +45,10 @@
      ![image](https://github.com/user-attachments/assets/20966310-44fc-4d39-960d-4e2405f67c99)
 
    - The commands.txt file should be in the same directory as the script otherwise it won't load your commands.
+   - Now you should be easily able to run the commands you need just change up the target.
+     
+     ![image](https://github.com/user-attachments/assets/c36ce7ff-19cf-4491-960c-60b081cf3b76)
+
 
 ---
 
