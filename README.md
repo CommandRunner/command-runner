@@ -19,16 +19,15 @@
 1. **Prerequisites:**
    - Burp Suite Professional or Community Edition
    - Jython standalone JAR ([Download here](https://www.jython.org/download))
-   - Place `command_runner4.py` and `commands.txt` in the same folder
+   - Add the jython jar file to burp. Click on settings > extensions > Python enviroment > add the jython jar file.
+   - git clone https://github.com/CommandRunner/command-runner
+   - Go to extensions click on Add > Extension type - python > Next.
+   - You should see a tab now in burpsuite that says command runner
+  
+     ![image](https://github.com/user-attachments/assets/e6530413-3856-4a8a-8af4-c11b69449a27)
 
-2. **Load the Extension:**
-   - Open Burp Suite and go to the **Extender** tab
-   - Under **Options**, set the path to your Jython standalone JAR
-   - In the **Extensions** sub-tab, click **Add**
-   - Select **Extension type:** Python
-   - Choose `command_runner4.py` as the extension file and load it
 
-3. **Prepare Command Playbook (optional):**
+2. **Prepare Command Playbook (optional):**
    - Edit `commands.txt` to add your frequently used commands (one per line)
 
 ---
@@ -105,7 +104,7 @@ MIT License
 
 ## Credits
 
-Developed by [Your Name].  
+Developed by Az.  
 Inspired by real-world penetration testing workflows.
 
 ---
