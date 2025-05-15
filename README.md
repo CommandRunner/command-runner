@@ -93,9 +93,4 @@
 - Use only on authorized targets.
 
 ---
-## Questions?
-
-Feel free to msg me on discord erxc899
-
----
 
