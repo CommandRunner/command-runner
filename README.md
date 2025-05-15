@@ -39,6 +39,8 @@
 
 
 2. **Prepare Command Playbook**
+
+   - It’s recommended to edit commands.txt directly to organize your saved commands more effectively. Using the save command function will simply add the new command to the bottom of the list, which can make organization harder.
    - Edit `commands.txt` to add your frequently used commands (one per line)
    - An example format is provided in commands.txt, edit it to your liking.
 
@@ -80,15 +82,6 @@
    - click on the small arrows to resize 
      
      ![image](https://github.com/user-attachments/assets/b382bff0-f217-4d3f-bc3f-dd5621d786b6)
-
-
----
-
-## Recommended Usage
-
-- Edit the commands you'd like to save directly in commands.txt so you can organize everything properly instead of using the save command function directly because your command will just go to the bottom of the list.
-- Share your playbooks with people to get different ideas.
-- Open up a couple of tabs to run mutiple tools at once. 
 
 
 ---
