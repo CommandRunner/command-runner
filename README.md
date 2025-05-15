@@ -28,6 +28,9 @@
    - Burp Suite Professional or Community Edition
    - Jython standalone JAR ([Download here](https://www.jython.org/download))
    - Add the jython jar file to burp. Click on settings > extensions > Python enviroment > add the jython jar file.
+     
+     ![image](https://github.com/user-attachments/assets/556934aa-ccdf-4b32-bd07-cafa5bc318c9)
+
    - git clone https://github.com/CommandRunner/command-runner
    - Go to extensions click on Add > Extension type - python > Next.
    - You should see a tab now in burpsuite that says command runner
