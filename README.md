@@ -39,7 +39,6 @@
 2. **Prepare Command Playbook**
    - Edit `commands.txt` to add your frequently used commands (one per line)
    - An example format is provided in commands.txt, edit it to your liking.
-   - Make sure all the tools you'd like to use are already installed on your system and on path.
    - The commands.txt file should be in the same directory as the script otherwise it won't load your commands.
 
 ---
@@ -56,6 +55,7 @@
    - Enter a command in the input field (e.g., `nmap -sV target.com`)
    - Click **Run command** to execute it.
    - View real-time output in the pane below.
+   - Make sure all the tools you'd like to use are already installed on your system and on path.
 
 4. **Use the Command Playbook:**
    - Select a saved command from the dropdown.
