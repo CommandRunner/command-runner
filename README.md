@@ -1,0 +1,114 @@
+# Command Runner for Burp Suite
+
+**Command Runner** is a Burp Suite extension that enables you to run system commands directly within Burp’s interface. It supports multiple tabs, a command playbook for saved commands, and real-time output display, helping penetration testers integrate OS tools seamlessly into their workflow.
+
+---
+
+## Features
+
+- Execute OS commands from inside Burp Suite (Linux, macOS, Windows)
+- Multiple independent command tabs
+- Manage a command playbook with save/delete functionality
+- Real-time command output display
+- Cancel running commands anytime
+
+---
+
+## Installation
+
+1. **Prerequisites:**
+   - Burp Suite Professional or Community Edition
+   - Jython standalone JAR ([Download here](https://www.jython.org/download))
+   - Place `command_runner4.py` and `commands.txt` in the same folder
+
+2. **Load the Extension:**
+   - Open Burp Suite and go to the **Extender** tab
+   - Under **Options**, set the path to your Jython standalone JAR
+   - In the **Extensions** sub-tab, click **Add**
+   - Select **Extension type:** Python
+   - Choose `command_runner4.py` as the extension file and load it
+
+3. **Prepare Command Playbook (optional):**
+   - Edit `commands.txt` to add your frequently used commands (one per line)
+
+---
+
+## How to Use
+
+1. **Open the "Command Runner" tab** in Burp Suite after loading the extension.
+
+2. **Manage Tabs:**
+   - Click **+ New Tab** to open multiple command runners.
+   - Each tab runs commands independently.
+
+3. **Run Commands:**
+   - Enter a command in the input field (e.g., `nmap -sV target.com`)
+   - Click **Run command** to execute it.
+   - View real-time output in the pane below.
+
+4. **Use the Command Playbook:**
+   - Select a saved command from the dropdown.
+   - Click **Save Command** to add the current command to the playbook.
+   - Click **Delete Command** to remove a selected command.
+   - Commands persist in `commands.txt` across sessions.
+
+5. **Cancel or Close:**
+   - Use **Cancel** to stop a running command.
+   - Use **Close Tab** to remove the current tab.
+
+---
+
+## Command Playbook Format
+
+| File         | Description                       |
+|--------------|---------------------------------|
+| `commands.txt` | Plain text file with one command per line |
+
+- Shared across all tabs
+- Editable via UI or manually by editing the file
+
+---
+
+## Example Commands
+
+| Command                     | Description                    |
+|-----------------------------|-------------------------------|
+| `nmap -sV target.com`       | Service/version scan          |
+| `whatweb target.com`        | Website reconnaissance        |
+| `curl -I http://target.com` | Fetch HTTP headers            |
+
+---
+
+## Security Notice
+
+- Commands run with your local user privileges.
+- Avoid running untrusted or dangerous commands.
+- Use only on authorized targets.
+
+---
+
+## Troubleshooting
+
+| Issue                        | Solution                                               |
+|------------------------------|-------------------------------------------------------|
+| Output missing or garbled     | Ensure correct Jython JAR and Burp version             |
+| Linux/macOS output issues     | Install `script` utility (`apt install bsdutils`)      |
+| Windows command issues        | Commands run via `cmd.exe`                             |
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Credits
+
+Developed by [Your Name].  
+Inspired by real-world penetration testing workflows.
+
+---
+
+Enjoy automating your Burp Suite workflow with Command Runner!
+
