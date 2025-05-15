@@ -1,6 +1,7 @@
 # Command Runner for Burp Suite
 
-![image](https://github.com/user-attachments/assets/3dc380a1-5f15-45cd-9d7a-e2362e7890ae)
+![CommandRunner_resized](https://github.com/user-attachments/assets/62ad4eaa-996c-4254-98ee-481abfdf0aff)
+
 
 
 **Command Runner** is a Burp Suite extension that enables you to run system commands directly within Burp’s interface. It supports multiple tabs, a command playbook for saved commands, and real-time output display, helping penetration testers integrate OS tools seamlessly into their workflow.
