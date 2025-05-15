@@ -80,14 +80,8 @@
 
 ---
 
-## Troubleshooting
-
-| Issue                        | Solution                                               |
-|------------------------------|-------------------------------------------------------|
-| Output missing or garbled     | Ensure correct Jython JAR and Burp version             |
-| Linux/macOS output issues     | Install `script` utility (`apt install bsdutils`)      |
-| Windows command issues        | Commands run via `cmd.exe`                             |
-
+## Contact
+feel free to msg me on discord erxc899
 ---
 
 ## License
