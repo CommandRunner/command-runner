@@ -68,16 +68,6 @@
 
 ---
 
-## Example Commands
-
-| Command                     | Description                    |
-|-----------------------------|-------------------------------|
-| `nmap -sV target.com`       | Service/version scan          |
-| `whatweb target.com`        | Website reconnaissance        |
-| `curl -I http://target.com` | Fetch HTTP headers            |
-
----
-
 ## Security Notice
 
 - Commands run with your local user privileges.
