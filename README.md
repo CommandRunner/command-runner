@@ -67,7 +67,7 @@
 
 ---
 
-## Recommended USage
+## Recommended Usage
 
 
 ---
@@ -79,23 +79,13 @@
 - Use only on authorized targets.
 
 ---
+## Questions?
 
-## Contact
 feel free to msg me on discord erxc899
----
-
-## License
-
-MIT License
 
 ---
-
-## Credits
 
 Developed by Az.  
 Inspired by real-world penetration testing workflows.
-
----
-
-Enjoy automating your Burp Suite workflow with Command Runner!
+Enjoy automating your workflow with Command Runner!
 
