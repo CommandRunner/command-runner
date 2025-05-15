@@ -99,7 +99,3 @@ Feel free to msg me on discord erxc899
 
 ---
 
-Developed by Az.  
-Inspired by real-world penetration testing workflows.
-Enjoy making your workflow seamless with Command Runner!
-
