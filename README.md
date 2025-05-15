@@ -39,6 +39,7 @@
 2. **Prepare Command Playbook**
    - Edit `commands.txt` to add your frequently used commands (one per line)
    - An example format is provided in commands.txt, edit it to your liking.
+   - Make sure all the tools you'd like to use are already installed on your system and on path.
 
 ---
 
