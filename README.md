@@ -88,7 +88,7 @@
 
 - Edit the commands you'd like to save directly in commands.txt so you can organize everything properly instead of using the save command function directly because your command will just go to the bottom of the list.
 - Share your playbooks with people to get different ideas.
-- Open up a couple of tabs to run mutiple tools at once.
+- Open up a couple of tabs to run mutiple tools at once. 
 
 
 ---
