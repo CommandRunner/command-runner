@@ -1,6 +1,7 @@
 # Command Runner for Burp Suite
 
-![image](https://github.com/user-attachments/assets/a94032c7-457e-4eee-9062-90071a88cb36)
+![Uploading image.png…]()
+
 
 
 
