@@ -76,8 +76,11 @@
    - Use **Cancel** to stop a running command.
    - Use **Close Tab** to remove the current tab.
 
-6. **Increase/decrease the pane sizing**
-   - click on the small arrows to increase or decrease the pane size to easily read the output.
+6. **Resizing**
+   - click on the small arrows to resize.
+     
+     ![image](https://github.com/user-attachments/assets/b382bff0-f217-4d3f-bc3f-dd5621d786b6)
+
 
 ---
 
