@@ -88,7 +88,7 @@
 
 - Edit the commands you'd like to save directly in commands.txt so you can organize everything properly instead of using the save command function directly because your command will just go to the bottom of the list.
 - Share your playbooks with people to get different ideas.
-- Helpful for setting up workflows for Bug bounty
+- You can open up multiple tabs to run more than one command
 
 
 ---
