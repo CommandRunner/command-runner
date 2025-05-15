@@ -83,9 +83,9 @@
 
 ## Recommended Usage
 
-- Edit the commands you'd like to save directly in commands.txt so you can organize everything properly instead of using the save command function directly.
+- Edit the commands you'd like to save directly in commands.txt so you can organize everything properly instead of using the save command function directly because your command will just go to the bottom of the list.
 - Share your playbooks with people to get different ideas.
-- Make playbooks for beginners so they know what commands to use and why.
+- Helpful for setting up workflows for Bug bounty
 
 
 ---
