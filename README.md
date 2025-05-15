@@ -27,7 +27,7 @@
      ![image](https://github.com/user-attachments/assets/e6530413-3856-4a8a-8af4-c11b69449a27)
 
 
-2. **Prepare Command Playbook **
+2. **Prepare Command Playbook**
    - Edit `commands.txt` to add your frequently used commands (one per line)
 
 ---
