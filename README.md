@@ -73,6 +73,9 @@
 
 ## Recommended Usage
 
+- Edit the commands you'd like to save directly in commands.txt so you can organize everything properly. If you't dont care about organization then go ahead and use the save command funciton directly.
+- Share your playbooks with people to get different ideas of what tools to use or not to use.
+
 
 ---
 
