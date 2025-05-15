@@ -82,7 +82,7 @@
 ---
 ## Questions?
 
-feel free to msg me on discord erxc899
+Feel free to msg me on discord erxc899
 
 ---
 
