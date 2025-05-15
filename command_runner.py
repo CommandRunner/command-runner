@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 from burp import IBurpExtender, ITab
 import subprocess
 import threading
@@ -6,7 +6,6 @@ import sys
 import os
 import uuid
 import re
-
 
 from javax.swing import (JPanel, JButton, JTextField, JLabel, JScrollPane,
                         JTextArea, JSplitPane, SwingUtilities, Box,
@@ -34,24 +33,24 @@ class BurpExtender(IBurpExtender, ITab):
     def _create_ui(self):
         self._main_panel = JPanel(BorderLayout())
         self._main_panel.setBorder(EmptyBorder(10, 10, 10, 10))
-        
+
         header_panel = JPanel(BorderLayout())
         header_label = JLabel("Command Runner", JLabel.CENTER)
         header_label.setFont(Font("Sans-Serif", Font.BOLD, 14))
         header_label.setBorder(EmptyBorder(8, 10, 8, 10))
         header_panel.add(header_label, BorderLayout.CENTER)
-        
+
         self._tabbed_pane = JTabbedPane()
         self._tabbed_pane.setBorder(EmptyBorder(10, 0, 0, 0))
-        
+
         add_tab_button = JButton("+ New Tab")
         add_tab_button.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15))
         add_tab_button.addActionListener(self._add_tab)
-        
+
         button_panel = JPanel(FlowLayout(FlowLayout.RIGHT))
         button_panel.add(add_tab_button)
         header_panel.add(button_panel, BorderLayout.EAST)
-        
+
         self._main_panel.add(header_panel, BorderLayout.NORTH)
         self._main_panel.add(self._tabbed_pane, BorderLayout.CENTER)
 
@@ -70,12 +69,11 @@ class BurpExtender(IBurpExtender, ITab):
             TitledBorder(BorderFactory.createLineBorder(UIManager.getColor("TitledBorder.border")), "Command Configuration"),
             EmptyBorder(10, 10, 10, 10)
         ))
-        
+
         cmd_input_panel = JPanel(BorderLayout())
         cmd_label = JLabel("Command:")
         cmd_label.setFont(Font("Sans-Serif", Font.PLAIN, 12))
         cmd_input_panel.add(cmd_label, BorderLayout.WEST)
-        
         cmd_input = JTextField("echo Hello from tab")
         cmd_input.setFont(Font("Monospaced", Font.PLAIN, 12))
         cmd_input.setBorder(BorderFactory.createCompoundBorder(
@@ -84,36 +82,36 @@ class BurpExtender(IBurpExtender, ITab):
         ))
         cmd_input_panel.add(cmd_input, BorderLayout.CENTER)
         command_panel.add(cmd_input_panel)
-        
+
         command_panel.setMinimumSize(Dimension(100, 150))
         command_panel.add(Box.createRigidArea(Dimension(0, 10)))
-        
+
         saved_commands_panel = JPanel(BorderLayout())
         saved_commands_panel.add(JLabel("Saved Commands:"), BorderLayout.WEST)
-        
+
         cmd_combo = JComboBox(self._commands)
         cmd_combo.setFont(Font("Sans-Serif", Font.PLAIN, 12))
         cmd_combo.setEditable(False)
         cmd_combo.setPreferredSize(Dimension(300, 30))
         cmd_combo.addActionListener(lambda e, ci=cmd_input, cc=cmd_combo: ci.setText(cc.getSelectedItem()) if cc.getSelectedItem() else None)
         saved_commands_panel.add(cmd_combo, BorderLayout.CENTER)
-        
+
         cmd_button_panel = JPanel(FlowLayout(FlowLayout.RIGHT))
         save_button = self._create_styled_button("Save Command", lambda e, ci=cmd_input, cc=cmd_combo: self._save_command(ci.getText(), cc))
         delete_button = self._create_styled_button("Delete Command", lambda e, cc=cmd_combo: self._delete_command(cc))
         cmd_button_panel.add(save_button)
         cmd_button_panel.add(delete_button)
         saved_commands_panel.add(cmd_button_panel, BorderLayout.EAST)
-        
+
         command_panel.add(saved_commands_panel)
         command_panel.add(Box.createRigidArea(Dimension(0, 10)))
-        
+
         action_panel = JPanel(FlowLayout(FlowLayout.RIGHT))
         run_button = self._create_styled_button("Run command", lambda e: self._run_command(tab_id))
         cancel_button = self._create_styled_button("Cancel", lambda e: self._cancel_command(tab_id))
         cancel_button.setEnabled(False)
         close_button = self._create_styled_button("Close Tab", lambda e: self._close_tab(tab_id))
-        
+
         action_panel.add(run_button)
         action_panel.add(cancel_button)
         action_panel.add(close_button)
@@ -124,30 +122,38 @@ class BurpExtender(IBurpExtender, ITab):
             TitledBorder(BorderFactory.createLineBorder(UIManager.getColor("TitledBorder.border")), "Command Output"),
             EmptyBorder(10, 10, 10, 10)
         ))
-        
+
         output = JTextArea()
         output.setEditable(False)
         output.setFont(Font("Monospaced", Font.PLAIN, 13))
         output.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5))
         caret = output.getCaret()
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE)
-        
         output_scroll = JScrollPane(output)
         output_scroll.setMinimumSize(Dimension(100, 100))
         output_scroll.setPreferredSize(Dimension(100, 400))
         output_scroll.setBorder(BorderFactory.createLineBorder(UIManager.getColor("ScrollPane.border")))
-        
+
         output_panel.add(output_scroll, BorderLayout.CENTER)
+
+        # Add input field and send button for interactive input
+        input_panel = JPanel(BorderLayout())
+        input_field = JTextField()
+        input_field.setFont(Font("Monospaced", Font.PLAIN, 12))
+        send_button = self._create_styled_button("Send Input", None)
+        input_panel.add(input_field, BorderLayout.CENTER)
+        input_panel.add(send_button, BorderLayout.EAST)
+        output_panel.add(input_panel, BorderLayout.SOUTH)
 
         split_pane = JSplitPane(JSplitPane.VERTICAL_SPLIT, command_panel, output_panel)
         split_pane.setResizeWeight(0.3)
         split_pane.setOneTouchExpandable(True)
         split_pane.setBorder(None)
         split_pane.setDividerSize(8)
-        
+
         output_panel.setMinimumSize(Dimension(100, 100))
         output_panel.setPreferredSize(Dimension(100, 400))
-        
+
         panel.add(split_pane, BorderLayout.CENTER)
 
         self._tabs[tab_id] = {
@@ -156,9 +162,29 @@ class BurpExtender(IBurpExtender, ITab):
             "cmd_combo": cmd_combo,
             "run_button": run_button,
             "cancel_button": cancel_button,
+            "close_button": close_button,
             "output": output,
-            "process": None
+            "process": None,
+            "input_field": input_field,
+            "send_button": send_button
         }
+
+        # Hook up send_button to send input to process
+        def send_input_action(event, tab_id=tab_id):
+            tab = self._tabs.get(tab_id)
+            process = tab["process"]
+            if process and process.stdin:
+                user_input = tab["input_field"].getText()
+                try:
+                    process.stdin.write((user_input + "\n").encode('utf-8'))
+                    process.stdin.flush()
+                    SwingUtilities.invokeLater(lambda: tab["output"].append("> " + user_input + "\n"))
+                    tab["input_field"].setText("")
+                except Exception as e:
+                    SwingUtilities.invokeLater(lambda: tab["output"].append("\nError sending input: {}\n".format(str(e))))
+            else:
+                SwingUtilities.invokeLater(lambda: tab["output"].append("\nNo running process to send input to.\n"))
+        send_button.addActionListener(send_input_action)
 
         self._tabbed_pane.addTab("Tab", panel)
         index = self._tabbed_pane.indexOfComponent(panel)
@@ -226,7 +252,7 @@ class BurpExtender(IBurpExtender, ITab):
         tab = self._tabs.get(tab_id)
         if not tab:
             return
-            
+
         ansi_escape = re.compile(r'\x1b\[[0-9;]*[mK]')
 
         def run():
@@ -241,25 +267,47 @@ class BurpExtender(IBurpExtender, ITab):
                 if os.name == 'nt':
                     # Windows: run command as before
                     process = subprocess.Popen(["cmd.exe", "/c", cmd_text],
+                                               stdin=subprocess.PIPE,
                                                stdout=subprocess.PIPE,
                                                stderr=subprocess.STDOUT,
-                                               universal_newlines=True)
+                                               universal_newlines=False)
                 else:
                     # Unix/Linux/macOS: wrap command in `script` to simulate PTY
                     wrapped_cmd = 'script -q -c "{}" /dev/null'.format(cmd_text.replace('"', '\\"'))
                     process = subprocess.Popen(wrapped_cmd,
                                                shell=True,
+                                               stdin=subprocess.PIPE,
                                                stdout=subprocess.PIPE,
                                                stderr=subprocess.STDOUT,
-                                               universal_newlines=True)
+                                               universal_newlines=False)
 
                 tab["process"] = process
 
-                for line in iter(process.stdout.readline, ''):
-                    if process.poll() is not None:
+                # --- KEY FIX: read output byte by byte, so prompts (like [Y/n]) show up instantly ---
+                buffer = b""
+                while True:
+                    out = process.stdout.read(1)
+                    if not out:
                         break
+                    buffer += out
+                    if out in b"\r\n":
+                        line = buffer.decode('utf-8', errors='replace')
+                        clean_line = ansi_escape.sub('', line)
+                        SwingUtilities.invokeLater(lambda l=clean_line: tab["output"].append(l))
+                        buffer = b""
+                    else:
+                        # If buffer contains a prompt (like '[Y/n]'), flush it for display
+                        if buffer.endswith(b"[Y/n] ") or buffer.endswith(b"? "):
+                            line = buffer.decode('utf-8', errors='replace')
+                            clean_line = ansi_escape.sub('', line)
+                            SwingUtilities.invokeLater(lambda l=clean_line: tab["output"].append(l))
+                            buffer = b""
+
+                # Flush any remaining buffer
+                if buffer:
+                    line = buffer.decode('utf-8', errors='replace')
                     clean_line = ansi_escape.sub('', line)
-		    SwingUtilities.invokeLater(lambda l=clean_line: tab["output"].append(l))
+                    SwingUtilities.invokeLater(lambda l=clean_line: tab["output"].append(l))
 
                 process.stdout.close()
                 process.wait()
