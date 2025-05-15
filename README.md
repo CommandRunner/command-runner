@@ -77,7 +77,7 @@
    - Use **Close Tab** to remove the current tab.
 
 6. **Resizing**
-   - click on the small arrows to resize.
+   - click on the small arrows to resize 
      
      ![image](https://github.com/user-attachments/assets/b382bff0-f217-4d3f-bc3f-dd5621d786b6)
 
